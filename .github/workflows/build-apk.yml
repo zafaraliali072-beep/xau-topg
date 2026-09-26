@@ -47,7 +47,7 @@ jobs:
 
       - name: Set dark window background and theme
         run: |
-          STYLES=$(find android/app/src/main/res/values -name "styles.xml")
+          for STYLES in $(find android/app/src/main/res -path "*/values*/styles.xml" -o -path "*/values*/themes.xml"); do
           cat > "$STYLES" << 'EOF'
           <?xml version="1.0" encoding="utf-8"?>
           <resources>
@@ -63,6 +63,12 @@ jobs:
               </style>
           </resources>
           EOF
+          done
+
+      - name: Confirm manifest uses AppTheme
+        run: |
+          MANIFEST=$(find android/app/src/main -name "AndroidManifest.xml")
+          cat "$MANIFEST" | grep -i "android:theme"
 
       - name: Make app truly fullscreen (immersive)
         run: |
