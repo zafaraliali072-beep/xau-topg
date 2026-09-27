@@ -12,7 +12,7 @@ A free, open-source trading utility PWA built for XAU/USD (Gold) traders — mer
 
 ## Live App
 
-👉 [zafaraliali072-beep.github.io](https://zafaraliali072-beep.github.io)
+👉 [xautopg](https://zafaraliali072-beep.github.io/xau-topg/)
 
 ## Download
 
