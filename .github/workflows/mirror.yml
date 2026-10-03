@@ -17,9 +17,9 @@ jobs:
 
       - name: Fetch latest calendar JSON
         run: |
-          curl -sL "https://nfs.faireconomy.media/ff_calendar_thisweek.json" -o calendar.json
+          curl -sL "https://nfs.faireconomy.media/ff_calendar_thisweek.json" -o www/calendar.json
           # sanity check: make sure it's actually JSON, not an HTML error page
-          if ! head -c 1 calendar.json | grep -q '\['; then
+          if ! head -c 1 www/calendar.json | grep -q '\['; then
             echo "Fetched file does not look like JSON, aborting commit."
             exit 1
           fi
@@ -28,6 +28,6 @@ jobs:
         run: |
           git config user.name "calendar-bot"
           git config user.email "actions@github.com"
-          git add calendar.json
+          git add www/calendar.json
           git diff --quiet --cached || git commit -m "Update calendar mirror"
           git push
